@@ -26,11 +26,11 @@ return [
             // 服务器地址
             'hostname'        => env('DB_HOST', '127.0.0.1'),
             // 数据库名
-            'database'        => env('DB_NAME', ''),
+            'database'        => env('DB_NAME', 'demo'),
             // 用户名
             'username'        => env('DB_USER', 'root'),
             // 密码
-            'password'        => env('DB_PASS', ''),
+            'password'        => env('DB_PASS', 'zoe249..'),
             // 端口
             'hostport'        => env('DB_PORT', '3306'),
             // 数据库连接参数
@@ -38,7 +38,7 @@ return [
             // 数据库编码
             'charset'         => env('DB_CHARSET', 'utf8mb4'),
             // 数据库表前缀
-            'prefix'          => env('DB_PREFIX', ''),
+            'prefix'          => env('DB_PREFIX', 'tp_'),
 
             // 数据库部署方式:0 集中式(单一服务器),1 分布式(主从服务器)
             'deploy'          => 0,

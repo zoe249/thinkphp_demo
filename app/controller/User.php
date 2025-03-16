@@ -88,6 +88,80 @@ class User extends BaseController
             ]
         ];
 
-        return Db::name("user")->insertAll($data);
+        try {
+            return Db::name("user")->insertAll($data);
+        } catch (\Exception $e) {
+            return var_export($e->getMessage());
+        }
+    }
+
+    public function update()
+    {
+        $data = [
+            "id" => 3,
+           "name" => "拉克丝",
+            "age" => 1232
+        ];
+
+//        return Db::name('user')->where("id", 3)->update($data);
+//        return Db::name('user')->update($data);
+//        return Db::name('user')->exp("details", "UPPER(details)")->update($data);
+        return Db::name("user")->where("id", 3)->update([
+            "details" => DB::raw("UPPER(details)"),
+            "age" => DB::raw("age-2")
+        ]);
+    }
+
+    public function del()
+    {
+        return Db::name('user')->where("id", 11)->delete();
+    }
+
+    public function find()
+    {
+//        $user = Db::name("user")->where("id", ">=", 5)->select();
+//        $user = Db::name("user")->where("name", "like", "拉%")->select();
+//        $user = Db::name("user")->whereLike("name", "拉%")->select();
+
+//        $user = Db::name("user")->where("id", "in", [1, 3, 5])->select();
+        $user = Db::name("user")->whereIn("id", [1, 3, 5])->select();
+        $user = Db::name("user")->where("details", 'null')->select();
+        $user = Db::name("user")->where("id", 'exp', '> 4 and id < 10')->select();
+        $user = Db::name("user")->where("id", 'exp', '> 4 and id < 10')->select();
+//        return Db::getLastSql();
+        return json($user);
+    }
+
+    public function link()
+    {
+        $user = Db::name("user")->where([
+            ["id", ">", 7],
+            ["name", "=", "拉克丝"]
+        ])->select();
+
+        return json($user);
+    }
+
+    public function adv()
+    {
+        $user = Db::name("user")->where("name|details", "like", "拉%")->select();
+
+        $user = Db::name('user')->where([
+            ["gender", "=", "男"],
+            ["age", "exp", Db::raw(">= 10 and id < 5")]
+        ])->where("details", "like", "嘉%")->select();
+
+        $map1 = [
+            ["gender", "=", "男"],
+            ["age", "exp", Db::raw(">= 10 and id < 5")]
+        ];
+
+        $map2 = [
+            ["gender", "=", "男"],
+            ["details", "=", null]
+        ];
+        $user = Db::name("user")->whereOr([$map1, $map2])->select();
+//        return Db::getLastSql();
+        return json($user);
     }
 }
