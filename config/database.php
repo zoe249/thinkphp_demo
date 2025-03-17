@@ -30,7 +30,7 @@ return [
             // 用户名
             'username'        => env('DB_USER', 'root'),
             // 密码
-            'password'        => env('DB_PASS', 'zoe249..'),
+            'password'        => env('DB_PASS', 'root'),
             // 端口
             'hostport'        => env('DB_PORT', '3306'),
             // 数据库连接参数
@@ -55,7 +55,7 @@ return [
             // 监听SQL
             'trigger_sql'     => env('APP_DEBUG', true),
             // 开启字段缓存
-            'fields_cache'    => false,
+            'fields_cache'    => true,
         ],
 
         // 更多的数据库配置信息

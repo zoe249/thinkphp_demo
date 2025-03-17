@@ -5,7 +5,7 @@ namespace app\controller;
 use app\BaseController;
 use think\facade\Db;
 
-class User extends BaseController
+class UserBak extends BaseController
 {
     public function index()
     {
