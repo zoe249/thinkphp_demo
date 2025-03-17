@@ -3,6 +3,7 @@
 namespace app\controller;
 use app\BaseController;
 use app\model\User;
+use think\Exception;
 use think\facade\Db;
 
 class TestUser extends BaseController
@@ -10,14 +11,23 @@ class TestUser extends BaseController
     public function index()
     {
 //        $user = \app\model\User::select();
-        $user = User::select();
-        return json($user);
+//        $user = User::select();
+//        return json($user);
 //        return json(Db::name("user")->select());
+//        $user = User::find(1);
+//        echo $user->status;
+//        echo $user->getData('status');
+//        $user = User::select()->withAttr("age", function($value) {
+//            return $value + 100;
+//        });
+//        return json($user);
+        echo User::destroy(1);
     }
 
     public function add()
     {
-        $user = new User();
+//        return "add";
+//        $user = new User();
 //        $user->name = "李白";
 //        $user->age = 23;
 //        $user->gender = "男";
@@ -53,12 +63,20 @@ class TestUser extends BaseController
 //            ]
 //        ]);
 
-        User::create([
-           "name"=>"曹操",
-           "age"=>123,
+//        User::create([
+//           "name"=>"曹操",
+//           "age"=>55,
+//            "gender" => "男",
+//            "details" => "丞相"
+//        ], ["name", "age"], replace: true);
+//        return json($user);
+
+        return User::create([
+            "name"=>"张三分",
+            "age"=>55,
             "gender" => "男",
             "details" => "丞相"
-        ], ["name", "age"], replace: true);
+        ]);
     }
 
     public function del()
@@ -93,8 +111,14 @@ class TestUser extends BaseController
 //        $user = User::find(1);
 //        $user = User::select();
 //        $user = User::select([1, 2, 3]);
-        $user = User::where("id", "<", 5)->select();
-        $user = User::limit(3)->order("id", "desc")->select();
+//        $user = User::where("id", "<", 5)->select();
+//        $user = User::limit(3)->order("id", "desc")->select();
 //        return json($user);
+        $user = User::withSearch(["create_time"], [
+//            "name" => "克",
+            "create_time" => ["2025-01-22", "2025-03-22"]
+        ])->select();
+
+        return $user->getLastSql();
     }
 }
