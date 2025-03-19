@@ -85,9 +85,11 @@ class TestUser extends BaseController
 //        return json($user);
 //        return $user->delete();
 
-        User::destroy(function ($query) {
-            $query->where("id", ">", 14);
-        });
+        try {
+            return json(User::destroy(1));
+        } catch (Exception $e) {
+           echo $e->getMessage();
+        }
     }
 
     public function update()
@@ -114,11 +116,11 @@ class TestUser extends BaseController
 //        $user = User::where("id", "<", 5)->select();
 //        $user = User::limit(3)->order("id", "desc")->select();
 //        return json($user);
-        $user = User::withSearch(["create_time"], [
-//            "name" => "克",
-            "create_time" => ["2025-01-22", "2025-03-22"]
-        ])->select();
-
-        return $user->getLastSql();
+//        $user = User::withSearch(["create_time"], [
+////            "name" => "克",
+//            "create_time" => ["2025-01-22", "2025-03-22"]
+//        ])->select();
+//
+//        return $user->getLastSql();
     }
 }
