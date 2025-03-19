@@ -8,6 +8,6 @@ class Error
     {
         // TODO: Implement __call() method.
 //        return "不存在的控制器".$name;
-        return json($arguments);
+//        return json($arguments);
     }
 }

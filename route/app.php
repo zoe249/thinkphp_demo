@@ -10,8 +10,22 @@
 // +----------------------------------------------------------------------
 use think\facade\Route;
 
-Route::get('think', function () {
-    return 'hello,ThinkPHP8!';
+//Route::get('think', function () {
+//    return 'hello,ThinkPHP8!';
+//});
+//
+//Route::get('hello/:name', 'index/hello');
+
+
+Route::get("think", function () {
+    return "hello thinkphp!";
 });
 
-Route::get('hello/:name', 'index/hello');
+Route::pattern([
+    "id" => "\d+"
+]);
+
+//Route::rule("details/:id/[:uid]$", "Index/details");
+Route::rule("test", "Index/test");
+Route::rule("/", "Index/index");
+Route::rule("details/:id/:uid", "Index/details")->pattern([]);

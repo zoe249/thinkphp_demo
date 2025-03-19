@@ -16,8 +16,13 @@ class Index extends BaseController
         return 'hello,' . $name;
     }
 
-    public function test($info)
+    public function test()
     {
-        return $info;
+        return "test";
+    }
+
+    public function details($id, $uid)
+    {
+        return "details".$id.$uid;
     }
 }

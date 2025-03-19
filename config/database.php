@@ -55,7 +55,7 @@ return [
             // 监听SQL
             'trigger_sql'     => env('APP_DEBUG', true),
             // 开启字段缓存
-            'fields_cache'    => true,
+            'fields_cache'    => false,
         ],
 
         // 更多的数据库配置信息
