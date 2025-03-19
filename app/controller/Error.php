@@ -10,4 +10,9 @@ class Error
 //        return "不存在的控制器".$name;
 //        return json($arguments);
     }
+
+    public function miss()
+    {
+        return '404 Not Found';
+    }
 }
