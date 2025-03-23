@@ -56,4 +56,6 @@ use think\facade\Route;
 
 //Route::resource("blog", "Blog");
 //Route::resource("blog", "Blog")->vars(["blog"=>"blog_id"]);
-Route::resource("blog", "Blog")->only(["index", "create", "edit"]);
+//Route::resource("blog", "Blog")->only(["index", "create", "edit"]);
+//Route::resource("t/s", "Tk/save")->token();
+Route::resource("/", "Index/save")->minddleware(\app\middleware\Auth::class);
